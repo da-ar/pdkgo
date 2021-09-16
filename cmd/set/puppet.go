@@ -30,7 +30,7 @@ func CreateSetPuppetCommand() *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {
 			configurePuppet(args)
 		},
-		ValidArgs: []string{"5", "6", "7"},
+		ValidArgs: []string{"5.5.0", "6.15.0", "7.5.0"},
 		Args:      cobra.ExactValidArgs(1),
 	}
 
@@ -53,6 +53,6 @@ func configurePuppet(args []string) {
 	}
 
 	puppet.StopContainer()
-	puppet.StartContainer(viper.GetInt(config.PuppetVersion))
+	puppet.StartContainer(viper.GetString(config.PuppetVersion))
 	get.LogPuppetVersion()
 }
